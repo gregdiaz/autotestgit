@@ -1,0 +1,6 @@
+package/
+*.vs
+*.orig
+ClassLibrary1/bin/Debug
+ClassLibrary1/obj
+ClassLibrary1/properties
