@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using Trademark.Common;
+
+namespace Trademark.pageObjects
+{
+    class LoginUser
+    {
+        private IWebDriver driver;
+
+        public string _email = "email";
+        public string _pass = "password";
+        public string _loginbtn = ".auth0-label-submit";
+
+
+        public LoginUser(IWebDriver driver)
+        {
+            this.driver = driver;
+        }
+
+        public void opsecemail() {
+            Thread.Sleep(5000);
+            var user = ConfigurationManager.AppSettings["user"];
+            driver.FindElement(By.Name(_email)).SendKeys(user);
+        }
+
+        public void opscpass() {
+            var password = ConfigurationManager.AppSettings["pass"];
+            driver.FindElement(By.Name(_pass)).SendKeys(password);
+            clickbtn();
+        }
+
+        public void clickbtn() {
+           var loginbtn  = driver.FindElement(By.CssSelector(_loginbtn));
+           loginbtn.Click();
+        }
+
+    }
+}
