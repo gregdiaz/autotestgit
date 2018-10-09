@@ -8,12 +8,13 @@ using OpenQA.Selenium.Chrome;
 using System.Configuration;
 using NUnit.Framework;
 using OpenQA.Selenium.Support.UI;
+using System.Threading;
 
 namespace Trademark.Common
 {
     class Browser
     {
-       public IWebDriver driver { get; private set;}
+        public IWebDriver driver { get; private set;}
          
         public void SetUp()
         {
@@ -31,6 +32,12 @@ namespace Trademark.Common
         public void waitMethod() {
             var timeout = 10;
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
+        }
+
+        public void ClearText(string Selector)
+        {
+            Thread.Sleep(5000);
+            driver.FindElement(By.Name(Selector)).Clear();
         }
 
         public void close() {
