@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
+﻿using System.Configuration;
 using System.Threading;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 using Trademark.Common;
 
 namespace Trademark.pageObjects
@@ -15,6 +8,7 @@ namespace Trademark.pageObjects
     class LoginUser
     {
         private IWebDriver driver;
+        private Browser browser = new Browser();
         
         public string _email = "email";
         public string _pass = "password";
@@ -28,7 +22,7 @@ namespace Trademark.pageObjects
         }
 
         public void opsecemail() {
-            Thread.Sleep(5000);
+            browser.Waitfor(3000);
             var user = ConfigurationManager.AppSettings["user"];
             driver.FindElement(By.Name(_email)).SendKeys(user);
         }
@@ -41,7 +35,8 @@ namespace Trademark.pageObjects
 
         public void TypeWrongPass() {
             var pass_wrong = ConfigurationManager.AppSettings["pass_wrong"];
-            driver.FindElement(By.Name(_pass)).SendKeys(pass_wrong);
+            browser.GetElementByName(_pass).SendKeys(pass_wrong);
+            //driver.FindElement(By.Name(_pass)).SendKeys(pass_wrong);
             clickbtn();
         }
 
@@ -52,7 +47,7 @@ namespace Trademark.pageObjects
 
         public string GetMessageError()
         {
-            Thread.Sleep(3000);
+            browser.Waitfor(3000);
             return driver.FindElement(By.CssSelector(_errorMenssage)).Text;
         }
     }

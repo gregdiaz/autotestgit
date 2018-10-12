@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Trademark.pageObjects;
 using Trademark.Common;
+using System.Threading;
 
 namespace Trademark.Test
 {
@@ -30,10 +25,9 @@ namespace Trademark.Test
         public void Opseclogin_Sucessfull()
         {
             LoginUser login = new LoginUser(browser.driver);
-            browser.ClearText(login._email);
             browser.ClearText(login._pass);
-            login.opsecemail();
             login.opscpass();
+            Thread.Sleep(3000);
             browser.close();
         }
 
