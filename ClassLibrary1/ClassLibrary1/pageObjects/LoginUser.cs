@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
+﻿using System.Configuration;
 using System.Threading;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 using Trademark.Common;
 
 namespace Trademark.pageObjects
@@ -15,10 +8,12 @@ namespace Trademark.pageObjects
     class LoginUser
     {
         private IWebDriver driver;
-
+        private Browser browser = new Browser();
+        
         public string _email = "email";
         public string _pass = "password";
         public string _loginbtn = ".auth0-label-submit";
+        public string _errorMenssage = "div.auth0-global-message-error span.animated > span";
 
 
         public LoginUser(IWebDriver driver)
@@ -27,7 +22,7 @@ namespace Trademark.pageObjects
         }
 
         public void opsecemail() {
-            Thread.Sleep(5000);
+            browser.Waitfor(3000);
             var user = ConfigurationManager.AppSettings["user"];
             driver.FindElement(By.Name(_email)).SendKeys(user);
         }
@@ -38,10 +33,22 @@ namespace Trademark.pageObjects
             clickbtn();
         }
 
+        public void TypeWrongPass() {
+            var pass_wrong = ConfigurationManager.AppSettings["pass_wrong"];
+            browser.GetElementByName(_pass).SendKeys(pass_wrong);
+            //driver.FindElement(By.Name(_pass)).SendKeys(pass_wrong);
+            clickbtn();
+        }
+
         public void clickbtn() {
            var loginbtn  = driver.FindElement(By.CssSelector(_loginbtn));
            loginbtn.Click();
         }
 
+        public string GetMessageError()
+        {
+            browser.Waitfor(3000);
+            return driver.FindElement(By.CssSelector(_errorMenssage)).Text;
+        }
     }
 }
