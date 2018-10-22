@@ -8,7 +8,7 @@ namespace Trademark.pageObjects
     class LoginUser
     {
         private IWebDriver driver;
-        private Browser browser = new Browser();
+        private Browser browser;
         
         public string _email = "email";
         public string _pass = "password";
@@ -16,9 +16,10 @@ namespace Trademark.pageObjects
         public string _errorMenssage = "div.auth0-global-message-error span.animated > span";
 
 
-        public LoginUser(IWebDriver driver)
+        public LoginUser(Browser browser)
         {
-            this.driver = driver;
+            this.driver = browser.driver;
+            this.browser = browser;
         }
 
         public void opsecemail() {
@@ -34,6 +35,7 @@ namespace Trademark.pageObjects
         }
 
         public void TypeWrongPass() {
+
             var pass_wrong = ConfigurationManager.AppSettings["pass_wrong"];
             browser.GetElementByName(_pass).SendKeys(pass_wrong);
             //driver.FindElement(By.Name(_pass)).SendKeys(pass_wrong);

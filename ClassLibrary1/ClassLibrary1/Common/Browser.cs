@@ -13,7 +13,6 @@ namespace Trademark.Common
     class Browser
     {
         public IWebDriver driver { get; private set;}
-        //private WebDriverWait wait;
 
         public void SetUp()
         {
@@ -37,10 +36,9 @@ namespace Trademark.Common
             return element;
         }
 
-        public void RefreshPage() {
-
+        public void RefreshPage()
+        {
             driver.Navigate().Refresh();
-
         }
 
         public void ScrollToElement(string selector) {
@@ -51,7 +49,8 @@ namespace Trademark.Common
             actions.Perform();
         }
 
-        public WebDriverWait WaitMethod() {
+        public WebDriverWait WaitMethod()
+        {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             return wait;
         }

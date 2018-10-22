@@ -14,7 +14,7 @@ namespace Trademark.Test
         {
             Browser browser = new Browser();
             browser.SetUp();
-            LoginUser login = new LoginUser(browser.driver);
+            LoginUser login = new LoginUser(browser);
             login.opsecemail();
             login.opscpass();
             Thread.Sleep(3000);
