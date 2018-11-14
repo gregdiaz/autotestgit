@@ -9,10 +9,10 @@ namespace Trademark.Test
     [TestFixture, Order(2)]
     class DashboardTest
     {
+        Browser browser = new Browser();
         [Test, Order(1)]
         public void widgetelemets()
         {
-            Browser browser = new Browser();
             browser.SetUp();
             LoginUser login = new LoginUser(browser);
             login.opsecemail();
@@ -29,6 +29,6 @@ namespace Trademark.Test
             homepage.TopRoyaltyWidget();
             homepage.SalesRoyaltyTrendWidget();
             browser.close();
-           }
+        }
     }
 }

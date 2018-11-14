@@ -35,6 +35,11 @@ namespace Trademark.Common
             IWebElement element = wait.Until(drv => drv.FindElement(By.CssSelector(selector)));
             return element;
         }
+        public IWebElement VisibleSelector(string selector) {
+            IWebElement element = driver.FindElement(By.CssSelector(selector));
+            return element;
+
+        }
 
         public void RefreshPage()
         {
