@@ -13,7 +13,6 @@ namespace Trademark.Test
         [Test, Order(1)]
         public void widgetelemets()
         {
-            browser.SetUp();
             LoginUser login = new LoginUser(browser);
             login.opsecemail();
             login.opscpass();

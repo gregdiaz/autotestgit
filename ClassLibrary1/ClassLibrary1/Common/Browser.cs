@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Configuration;
@@ -14,7 +12,7 @@ namespace Trademark.Common
     {
         public IWebDriver driver { get; private set;}
 
-        public void SetUp()
+        public Browser()
         {
            driver = new ChromeDriver();
            driver.Manage().Window.Maximize();
@@ -35,15 +33,34 @@ namespace Trademark.Common
             IWebElement element = wait.Until(drv => drv.FindElement(By.CssSelector(selector)));
             return element;
         }
+
+        public IWebElement GetElementById(string selector)
+        {
+            var wait = WaitMethod();
+            IWebElement element = wait.Until(drv => drv.FindElement(By.Id(selector)));
+            return element;
+        }
+
         public IWebElement VisibleSelector(string selector) {
             IWebElement element = driver.FindElement(By.CssSelector(selector));
             return element;
+        }
 
+        public IWebElement VisibleSelectorbyId(string selector)
+        {
+            IWebElement element = driver.FindElement(By.Id(selector));
+            return element;
         }
 
         public void RefreshPage()
         {
             driver.Navigate().Refresh();
+        }
+
+        public void clickelement(string selector)
+        {
+            var click = driver.FindElement(By.CssSelector(selector));
+            click.Click();
         }
 
         public void ScrollToElement(string selector) {
@@ -56,8 +73,8 @@ namespace Trademark.Common
 
         public WebDriverWait WaitMethod()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            return wait;
+            WebDriverWait wait1 = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            return wait1;
         }
 
         public void ClearText(string Selector)
@@ -66,15 +83,19 @@ namespace Trademark.Common
             IWebElement element = wait.Until(drv => drv.FindElement(By.Name(Selector)));
             element.Clear();
         }
+
         public void Waitfor(int seg) {
             Thread.Sleep(seg);
+        }
+
+        public string GetMessage(string selector)
+        {
+            Waitfor(5000);
+            return driver.FindElement(By.CssSelector(selector)).Text;
         }
 
         public void close() {
             driver.Close();
         }
-
-
-
     }
 }

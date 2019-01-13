@@ -14,7 +14,8 @@ namespace Trademark.pageObjects
         public string _pass = "password";
         public string _loginbtn = ".auth0-label-submit";
         public string _errorMenssage = "div.auth0-global-message-error span.animated > span";
-
+        public string _remember = ".auth0-lock-form> div > div > .auth0-lock-alternative";
+        public string _remembermsj = "div > div:nth-child(2) > div > div > span > span";
 
         public LoginUser(Browser browser)
         {
@@ -31,26 +32,25 @@ namespace Trademark.pageObjects
         public void opscpass() {
             var password = ConfigurationManager.AppSettings["pass"];
             driver.FindElement(By.Name(_pass)).SendKeys(password);
-            clickbtn();
+            browser.clickelement(_loginbtn);
         }
 
         public void TypeWrongPass() {
 
             var pass_wrong = ConfigurationManager.AppSettings["pass_wrong"];
             browser.GetElementByName(_pass).SendKeys(pass_wrong);
-            //driver.FindElement(By.Name(_pass)).SendKeys(pass_wrong);
-            clickbtn();
+            browser.clickelement(_loginbtn);
         }
 
-        public void clickbtn() {
-           var loginbtn  = driver.FindElement(By.CssSelector(_loginbtn));
-           loginbtn.Click();
-        }
-
-        public string GetMessageError()
-        {
+        public void remember() {
             browser.Waitfor(3000);
-            return driver.FindElement(By.CssSelector(_errorMenssage)).Text;
+            browser.clickelement(_remember);
+            if (browser.GetElementByName(_email).GetAttribute("value") == string.Empty) {
+                var user = ConfigurationManager.AppSettings["user"];
+                opsecemail();
+            }
+            browser.clickelement(_loginbtn);
         }
+
     }
 }
