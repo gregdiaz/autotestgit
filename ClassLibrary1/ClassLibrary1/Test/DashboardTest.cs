@@ -9,12 +9,11 @@ namespace Trademark.Test
     [TestFixture, Order(2)]
     class DashboardTest
     {
+        Browser browser = new Browser();
         [Test, Order(1)]
         public void widgetelemets()
         {
-            Browser browser = new Browser();
-            browser.SetUp();
-            LoginUser login = new LoginUser(browser.driver);
+            LoginUser login = new LoginUser(browser);
             login.opsecemail();
             login.opscpass();
             Thread.Sleep(3000);
@@ -29,6 +28,6 @@ namespace Trademark.Test
             homepage.TopRoyaltyWidget();
             homepage.SalesRoyaltyTrendWidget();
             browser.close();
-           }
+        }
     }
 }

@@ -18,6 +18,9 @@ namespace Trademark.pageObjects
         public string _toproyalty = "TopRoyaltyOrganizations";
         public string _Toproyaltybtn = "#TopRoyaltyOrganizations > div > div.header > div";
         public string _salesroyalty = "SalesAndRoyaltyTrendOverTimeWidget";
+        public string _menudrawer = "#leftnavigation";
+        public string _logo = ".navbar-header > a > img";
+
 
         public Dashboard(IWebDriver driver)
         {
@@ -72,6 +75,15 @@ namespace Trademark.pageObjects
         public void SalesRoyaltyTrendWidget()
         {      
             driver.FindElement(By.Id(_salesroyalty));
-        } 
+        }
+        public void Menu_Nav() {
+            driver.FindElement(By.CssSelector(_logo));                               
+        }
+        public IWebElement  Drawer_Menu() {
+            driver.FindElement(By.CssSelector(_menudrawer));
+            var element = driver.FindElement(By.CssSelector(_menudrawer));
+            element.GetCssValue("innerHTML");
+            return element;
+        }
     }
 }
