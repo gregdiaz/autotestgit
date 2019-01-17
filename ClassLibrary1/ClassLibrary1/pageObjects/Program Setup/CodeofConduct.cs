@@ -8,20 +8,20 @@ using Trademark.Common;
 
 namespace Trademark.pageObjects.Program_Setup
 {
-    class CodeofConduct
+    class CodeofConduct : General
     {
         private Browser browser;
 
         Menudrawer menudrawer = new Menudrawer();
 
-        public CodeofConduct(Browser browser)
+        public CodeofConduct(Browser browser) : base(browser)
         {
             this.browser = browser;
             //LoginConection loginc = new LoginConection();
             
         }
 
-        public string _codeconductab = "#codeOfConductTab";
+        public string _codeconductab = "#programSetupTabs > #codeOfConductTab";
         public string _search = "#searchConductCodes";
         public string _addcodeconduct = "#TopBarContainer > div:nth-child(2) > ol > li > a";
         public string _editbuton = "tr:nth-child(1) > td.text-center > ol > li:nth-child(1)";
@@ -31,18 +31,21 @@ namespace Trademark.pageObjects.Program_Setup
         public string _disablebtn = "#conductCodeForm > div > div > div > div > div:nth-child(4) > div > div";
         public string _enableeditbtn = ".padding-bottom-10.form-inline > a:nth-child(1)";
         public string _noteeditable = ".note-editable.panel-body";
-        public IWebElement x;
-            
+        public string _savebtn = "#conductCodeForm > div > div > div > div > div.pull-right.margin-bottom-10 > button.btn.btn-primary.btnProcessRequest";
+        public string _cancelbtn = "#conductCodeForm > div > div > div > div > div.pull-right.margin-bottom-10 > button.btn.btn-success";
+
         public void CodeofConductinfo()
         {
+            general();
+
            // LoginUser login = new LoginUser(browser);
 
-            browser.Waitfor(10000);
+            //browser.Waitfor(10000);
 
 
-            browser.GetElementBySelector(menudrawer._menudrawer).Click();
-            browser.GetElementBySelector(menudrawer._menudrawerprogram).Click();
-            browser.Waitfor(4000);
+            //browser.GetElementBySelector(menudrawer._menudrawer).Click();
+           // browser.GetElementBySelector(menudrawer._menudrawerprogram).Click();
+           // browser.Waitfor(4000);
             browser.GetElementBySelector(_codeconductab).Click();
             browser.Waitfor(3000);
             // browser.VisibleSelectorbyId(_search);
@@ -58,16 +61,15 @@ namespace Trademark.pageObjects.Program_Setup
             browser.GetElementBySelector(_descriptionedit).SendKeys("Description Code Conduct");
             browser.GetElementBySelector(_enableeditbtn).Click();
             browser.GetElementBySelector(_noteeditable).SendKeys("Note on Code of Conducts");
-
+            browser.VisibleSelector(_savebtn);
+            //browser.GetElementBySelector(_cancelbtn).Click();
                                  
-//# conductCodeForm > div > div > div > div > div:nth-child(4) > div > .toggle btn btn-sm ios btn-default off
-
-            //toggle btn btn - sm ios btn-primary
-                                   
         }
-        public IWebElement disablebotton() {
+
+        //error in message
+      /*  public IWebElement disablebotton() {
             x = browser.GetElementBySelector(_disablebtn);
             return x;
-        }
+        }*/
     }
 }

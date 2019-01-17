@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Browser.cs" />
+    <Compile Include="pageObjects\Program Setup\DSubmissionStages.cs" />
     <Compile Include="Common\LoginConection.cs" />
     <Compile Include="Common\Menudrawer.cs" />
     <Compile Include="pageObjects\Dashboard.cs" />
@@ -66,10 +67,11 @@
     <Compile Include="pageObjects\LoginUser.cs" />
     <Compile Include="pageObjects\Program Setup\CodeofConduct.cs" />
     <Compile Include="pageObjects\Program Setup\General.cs" />
+    <Compile Include="pageObjects\Program Setup\Organizationtag.cs" />
     <Compile Include="pageObjects\Program Setup\Usertags.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\DesignRequest\DesignRequest.cs" />
-    <Compile Include="Test\ProgramSetup\General.cs" />
+    <Compile Include="Test\ProgramSetup\Program_setup_module.cs" />
     <Compile Include="Test\DashboardTest.cs" />
     <Compile Include="Test\Sucessfull_login.cs" />
   </ItemGroup>

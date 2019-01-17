@@ -21,8 +21,11 @@ namespace Trademark.pageObjects.Program_Setup
 
        
         public void general() {
+
+            browser.Waitfor(20000);
             browser.GetElementBySelector(menudrawer._menudrawer).Click();
             browser.GetElementBySelector(menudrawer._menudrawerprogram).Click();
+            browser.Waitfor(2000);
             browser.GetElementBySelector(_generaltab);
             browser.VisibleSelector(_month);
             browser.GetElementBySelector(_agreementbtn);
