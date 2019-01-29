@@ -73,8 +73,8 @@ namespace Trademark.Common
 
         public WebDriverWait WaitMethod()
         {
-            WebDriverWait wait1 = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
-            return wait1;
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            return wait;
         }
 
         public void ClearText(string Selector)
@@ -97,5 +97,23 @@ namespace Trademark.Common
         public void close() {
             driver.Close();
         }
+
+        public void  WaitUntilElementVisible(string selector, int timeout = 10)
+        {
+            try
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(selector)));
+            }
+            catch (NoSuchElementException)
+            {
+                Console.WriteLine("Element with locator: '" + selector + "' was not found.");
+                throw;
+            }
+        }
+
+
+
     }
+
 }
